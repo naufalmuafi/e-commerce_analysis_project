@@ -9,7 +9,7 @@ This is real commercial data, it has been anonymised, and references to the comp
 
 ## Prerequisites
 
-install Python Virtual Environment and see the Pipfile
+To run this project, you'll need to set up a virtual environment using [pipenv](https://pipenv.pypa.io/en/latest/). Below is a list of required packages and dependencies:
 
 ```bash
 pip install pipenv
@@ -18,8 +18,6 @@ pipenv shell
 ```
 
 ### Project Dependencies
-
-To run this project, you'll need to set up a virtual environment using [pipenv](https://pipenv.pypa.io/en/latest/). Below is a list of required packages and dependencies:
 
 ```ini
 [packages]
