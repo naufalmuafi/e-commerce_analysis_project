@@ -150,7 +150,7 @@ rfm_df = c_rfm(main_df)
 st.header('Brazilian E-Commerce Dashboard :sparkles:')
 
 
-# ===== daily orders =====
+# ===== Q1: daily orders =====
 st.subheader('Daily Orders')
 
 col1, col2 = st.columns(2)
@@ -178,7 +178,7 @@ ax.tick_params(axis='x', labelsize=15)
 st.pyplot(fig)
 
 
-# ===== Product Performance =====
+# ===== Q2: Product Performance =====
 st.subheader('Best and Worst Performing Product')
 
 fig, ax = plt.subplots(nrows=1, ncols=2, figsize=(35, 15))
@@ -213,7 +213,7 @@ ax[1].set_title("Worst Performing Product", loc="center", fontsize=50)
 st.pyplot(fig)
 
 
-# ===== Customers Demographics =====
+# ===== Q3: Customers Demographics =====
 st.subheader("Customer Demographics")
 
 col1, col2 = st.columns(2)
@@ -235,6 +235,7 @@ with col1:
   ax.set_xlabel(None)
   ax.tick_params(axis='y', labelsize=20)
   ax.tick_params(axis='x', labelsize=15)
+  
   st.pyplot(fig)
 
 # by State
@@ -254,4 +255,26 @@ with col2:
   ax.set_xlabel(None)
   ax.tick_params(axis='y', labelsize=20)
   ax.tick_params(axis='x', labelsize=15)
+  
   st.pyplot(fig)
+
+
+# ===== Q4: Customers Payment Type =====
+st.subheader('Customer Payment Type')
+
+fig, ax = plt.subplots(figsize=(20,10))
+
+colors_ = ["#72BCD4", "#D3D3D3", "#D3D3D3", "#D3D3D3", "#D3D3D3", "#D3D3D3", "#D3D3D3", "#D3D3D3"]
+sns.barplot(
+  x="order_count",
+  y="payment_type",
+  data=payment_type_df.sort_values(by="order_count", ascending=False),
+  palette=colors_
+)
+ax.title("Customer Payment Type That's Most Preferred and Used.",
+          loc="center", fontsize=15)
+ax.xlabel(None)
+ax.ylabel(None)
+ax.tick_params(axis="y", labelsize=12)
+
+st.pyplot(fig)
