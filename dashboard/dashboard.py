@@ -115,9 +115,7 @@ with st.sidebar:
   st.write(
     '''
     # Public Brazilian E-Commerce
-    Data Analysis Project
-    
-    
+    Data Analysis Project    
     '''
   )
   
@@ -128,7 +126,10 @@ with st.sidebar:
     value=[min_date, max_date]
   )
   
-  st.caption('Copyright (c) Naufal Muafi nmuafi1@gmail.com')
+  st.caption('''
+             Copyright (c) Naufal Muafi | 
+             nmuafi1@gmail.com
+             ''')
 
 main_df = all_df[(all_df["order_purchase_timestamp"] >= str(start_date)) &
                  (all_df["order_purchase_timestamp"] <= str(end_date))]
@@ -164,13 +165,12 @@ with col2:
   st.metric("Total Revenue", value=total_revenue)
 
 fig, ax = plt.subplots(figsize=(16, 8))
-
 ax.plot(
-  daily_orders_df["order_date"],
-  daily_orders_df["order_count"],
-  marker='o',
-  linewidth=2,
-  color='#90CAF9'
+    daily_orders_df["order_date"],
+    daily_orders_df["order_count"],
+    marker='o',
+    linewidth=2,
+    color='#90CAF9'
 )
 ax.tick_params(axis='y', labelsize=20)
 ax.tick_params(axis='x', labelsize=15)
@@ -324,7 +324,6 @@ for i, column in enumerate(["recency", "frequency", "monetary"]):
   ax[i].tick_params(axis="x", labelsize=35)
   ax[i].tick_params(axis="y", labelsize=30)
   ax[i].set_xticklabels(top_customers["customer_id_short"], rotation=45)
-  
 
 ax[0].set_title("By Recency (days)", loc="center", fontsize=50)
 ax[1].set_title("By Frequency", loc="center", fontsize=50)
