@@ -131,3 +131,8 @@ main_df = all_df[(all_df["order_purchase_timestamp"] >= str(start_date)) &
 
 # Load the Dataframe
 daily_orders_df = c_daily_orders(main_df)
+sum_order_df = c_sum_order(main_df)
+bycity_df = c_bycity(main_df)
+bystate_df = c_bystate(main_df)
+payment_type_df = c_payment_type(main_df)
+rfm_df = c_rfm(main_df)
