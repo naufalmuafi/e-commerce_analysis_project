@@ -23,3 +23,15 @@ Dataframe Preparation
 ==================== '''
 
 # ===== Daily Orders Dataframe =====
+def c_daily_orders(df):
+  daily_orders = df.resample(rule="D", on="order_purchase_timestamp").agg({
+    "order_id": "nunique",
+    "price": "sum"
+  })
+  daily_orders = daily_orders.reset_index()
+  daily_orders.rename(columns={
+    "order_id": "order_count",
+    "price": "revenue"
+  }, inplace=True)
+  
+  return daily_orders
