@@ -272,17 +272,17 @@ sns.barplot(
   palette=colors_
 )
 ax.set_title("Customer Payment Type That's Most Preferred and Used.",
-          loc="center", fontsize=50)
+          loc="center", fontsize=30)
 ax.set_xlabel(None)
 ax.set_ylabel(None)
-ax.tick_params(axis="x", labelsize=30)
-ax.tick_params(axis="y", labelsize=35)
+ax.tick_params(axis="x", labelsize=15)
+ax.tick_params(axis="y", labelsize=20)
 
 st.pyplot(fig)
 
 
 # ===== Q5 - Q7: Best Customers Based on RFM Parameters =====
-st.subheader('Best Customers Based on RFM Parameters')
+st.subheader('Best Customers Based on RFM Parameters (customer_id)')
 
 col1, col2, col3 = st.columns(3)
 
@@ -301,7 +301,7 @@ with col3:
   avg_monetary = format_currency(rfm_df.monetary.mean(), "USD", locale="es_CO")
   st.metric("Average Monetary", value=avg_monetary)
 
-fig, ax = plt.subplots(nrows=1, ncols=3, figsize=(30,6))
+fig, ax = plt.subplots(nrows=1, ncols=3, figsize=(30, 15))
 
 colors = ["#72BCD4", "#72BCD4", "#72BCD4", "#72BCD4", "#72BCD4"]
 
@@ -321,15 +321,13 @@ for i, column in enumerate(["recency", "frequency", "monetary"]):
   )
   ax[i].set_ylabel(None)
   ax[i].set_xlabel(None)  
-  ax[i].tick_params(axis="x", labelsize=15)
-  ax[i].tick_params(axis="y", labelsize=18)
+  ax[i].tick_params(axis="x", labelsize=35)
+  ax[i].tick_params(axis="y", labelsize=30)
   ax[i].set_xticklabels(top_customers["customer_id_short"], rotation=45)
   
 
-ax[0].set_title("By Recency (days)", loc="center", fontsize=18)
-ax[1].set_title("By Frequency", loc="center", fontsize=18)
-ax[2].set_title("By Monetary", loc="center", fontsize=18)
-
-plt.suptitle("Best Customer Brand on RFM Parameters (customer_id)\n", fontsize=20)
+ax[0].set_title("By Recency (days)", loc="center", fontsize=50)
+ax[1].set_title("By Frequency", loc="center", fontsize=50)
+ax[2].set_title("By Monetary", loc="center", fontsize=50)
 
 st.pyplot(fig)
