@@ -178,3 +178,35 @@ st.pyplot(fig)
 
 
 # ===== Product Performance =====
+st.subheader('Best and Worst Performing Product')
+
+fig, ax = plt.subplots(nrows=1, ncols=2, figsize=(35, 15))
+
+colors = ["#90CAF9", "#D3D3D3", "#D3D3D3", "#D3D3D3", "#D3D3D3"]
+
+for i in range(2):
+  if i == 0:
+    data = sum_order_df.head(5)
+  elif i == 1:
+    data = sum_order_df.sort_values(by="quantity", ascending=True).head(5)
+  
+  sns.barplot(
+    x="quantity",
+    y="product_category_name",
+    data=data,
+    palette=colors,
+    ax=ax[i]
+  )
+  ax[i].set_ylabel(None)
+  ax[i].set_xlabel("Number of Sales", fontsize=30)
+  ax[i].tick_params(axis='y', labelsize=35)
+  ax[i].tick_params(axis='x', labelsize=30)
+
+ax[1].invert_xaxis()
+ax[1].yaxis.set_label_position('right')
+ax[1].yaxis.tick_right()
+
+ax[0].set_title("Best Performing Product", loc="center", fontsize=50)
+ax[1].set_title("Worst Performing Product", loc="center", fontsize=50)
+
+st.pyplot(fig)
