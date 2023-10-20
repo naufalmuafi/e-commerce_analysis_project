@@ -89,3 +89,12 @@ def c_rfm(df):
   
   return rfm
 
+
+''' ====================
+
+Load Dataframe
+
+==================== '''
+
+# Load the Data
+all_df = pd.read_csv("data.csv")
