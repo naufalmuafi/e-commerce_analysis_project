@@ -136,3 +136,11 @@ bycity_df = c_bycity(main_df)
 bystate_df = c_bystate(main_df)
 payment_type_df = c_payment_type(main_df)
 rfm_df = c_rfm(main_df)
+
+
+''' ====================
+
+Data Visualization
+
+==================== '''
+st.header('Brazilian E-Commerce Dashboard :sparkless:')
