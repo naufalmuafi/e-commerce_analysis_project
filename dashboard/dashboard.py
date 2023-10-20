@@ -74,3 +74,18 @@ def c_payment_type(df):
   return payment_type
 
 # ===== RFM Dataframe =====
+def c_rfm(df):
+  rfm = df.groupby(by="customer_id", as_index=False).agg({
+    "order_purchase_timestamp": "max",
+    "order_id": "nunique",
+    "price": "sum"
+  })
+  rfm.columns = ["customer_id", "max_order_timestamp", "frequency", "monetary"]
+  
+  rfm["max_order_timestamp"] = rfm["max_order_timestamp"].dt.date
+  recent_date = df["order_purchase_timestamp"].dt.date.max()
+  rfm["recency"] = rfm["max_order_timestamp"].apply(lambda x: (recent_date - x).days)
+  rfm.drop("max_order_timestamp", axis=1, inplace=True)
+  
+  return rfm
+
