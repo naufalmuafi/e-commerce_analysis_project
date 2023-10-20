@@ -92,9 +92,42 @@ def c_rfm(df):
 
 ''' ====================
 
-Load Dataframe
+Load Dataframe and create a filter
 
 ==================== '''
 
 # Load the Data
 all_df = pd.read_csv("data.csv")
+
+# ===== Create a Filter Component =====
+datetime_columns = ["order_purchase_timestamp",
+                    "order_delivered_customer_date"]
+all_df.sort_values(by="order_purchase_timestamp", inplace=True)
+all_df.reset_index(inplace=True)
+
+for column in datetime_columns:
+  all_df[column] = pd.to_datetime(all_df[column])
+
+min_date = all_df["order_purchase_timestamp"].min()
+max_date = all_df["order_purchase_timestamp"].max()
+
+with st.sidebar:
+  st.write(
+    '''
+    # Public Brazilian E-Commerce
+    Data Analysis Project
+    '''
+  )
+  
+  start_date, end_date = st.date_input(
+    label='Time Range',
+    min_value=min_date,
+    max_value=max_date,
+    value=[min_date, max_date]
+  )
+
+main_df = all_df[(all_df["order_purchase_timestamp"] >= str(start_date)) &
+                 (all_df["order_purchase_timestamp"] <= str(end_date))]
+
+# Load the Dataframe
+daily_orders_df = c_daily_orders(main_df)
