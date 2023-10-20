@@ -46,3 +46,11 @@ def c_sum_order(df):
   
   return sum_order
 
+# ===== by City Dataframe =====
+def c_bycity(df):
+  bycity = df.groupby(by="customer_city").customer_id.nunique().reset_index()
+  bycity.reanme(columns={
+      "customer_id": "customer_count"
+  }, inplace=True)
+  
+  return bycity
