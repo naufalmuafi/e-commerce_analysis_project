@@ -1,11 +1,11 @@
-''' ====================
+# ====================
 
-E-Commerce Public Analysis Dashboard
+# E-Commerce Public Analysis Dashboard
 
-by Naufal Mu'afi
-nmuafi1@gmail.com
+# by Naufal Mu'afi
+# nmuafi1@gmail.com
 
-==================== '''
+# ==================== '''
 
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -16,11 +16,11 @@ from babel.numbers import format_currency
 sns.set(style="dark")
 
 
-''' ====================
+# ''' ====================
 
-Dataframe Preparation
+# Dataframe Preparation
 
-==================== '''
+# ==================== '''
 
 # ===== Daily Orders Dataframe =====
 def c_daily_orders(df):
@@ -90,11 +90,11 @@ def c_rfm(df):
   return rfm
 
 
-''' ====================
+# ''' ====================
 
-Load Dataframe and create a filter
+# Load Dataframe and create a filter
 
-==================== '''
+# ==================== '''
 
 # Load the Data
 all_df = pd.read_csv("data.csv")
@@ -116,6 +116,8 @@ with st.sidebar:
     '''
     # Public Brazilian E-Commerce
     Data Analysis Project
+    
+    
     '''
   )
   
@@ -125,6 +127,8 @@ with st.sidebar:
     max_value=max_date,
     value=[min_date, max_date]
   )
+  
+  st.caption('Copyright (c) Naufal Muafi nmuafi1@gmail.com')
 
 main_df = all_df[(all_df["order_purchase_timestamp"] >= str(start_date)) &
                  (all_df["order_purchase_timestamp"] <= str(end_date))]
@@ -138,9 +142,39 @@ payment_type_df = c_payment_type(main_df)
 rfm_df = c_rfm(main_df)
 
 
-''' ====================
+# ''' ====================
 
-Data Visualization
+# Data Visualization
 
-==================== '''
-st.header('Brazilian E-Commerce Dashboard :sparkless:')
+# ==================== '''
+st.header('Brazilian E-Commerce Dashboard :sparkles:')
+
+# ===== daily orders =====
+st.subheader('Daily Orders')
+
+col1, col2 = st.columns(2)
+
+with col1:
+  total_orders = daily_orders_df.order_count.sum()
+  st.metric("Total Orders", value=total_orders)
+
+with col2:
+  total_revenue = format_currency(daily_orders_df.revenue.sum(), "USD", locale='es_CO')
+  st.metric("Total Revenue", value=total_revenue)
+
+fig, ax = plt.subplots(figsize=(16, 8))
+
+ax.plot(
+  daily_orders_df["order_date"],
+  daily_orders_df["order_count"],
+  marker='o',
+  linewidth=2,
+  color='#90CAF9'
+)
+ax.tick_params(axis='y', labelsize=20)
+ax.tick_params(axis='x', labelsize=15)
+
+st.pyplot(fig)
+
+
+# ===== Product Performance =====
