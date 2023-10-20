@@ -224,8 +224,8 @@ with col1:
     
   colors = ["#90CAF9", "#D3D3D3", "#D3D3D3", "#D3D3D3", "#D3D3D3", "#D3D3D3", "#D3D3D3", "#D3D3D3"]
   sns.barplot(
-    y="customer_count",
-    x="customer_city",
+    x="customer_count",
+    y="customer_city",
     data=bycity_df.sort_values(by="customer_count", ascending=False).head(10),
     palette=colors,
     ax=ax
@@ -233,8 +233,8 @@ with col1:
   ax.set_title("Number of Customer by City", loc="center", fontsize=50)
   ax.set_ylabel(None)
   ax.set_xlabel(None)
-  ax.tick_params(axis='y', labelsize=20)
-  ax.tick_params(axis='x', labelsize=15)
+  ax.tick_params(axis='x', labelsize=30)
+  ax.tick_params(axis='y', labelsize=35)
   
   st.pyplot(fig)
 
@@ -244,8 +244,8 @@ with col2:
     
   colors = ["#90CAF9", "#D3D3D3", "#D3D3D3", "#D3D3D3", "#D3D3D3", "#D3D3D3", "#D3D3D3", "#D3D3D3"]
   sns.barplot(
-    y="customer_count",
-    x="customer_state",
+    x="customer_count",
+    y="customer_state",
     data=bystate_df.sort_values(by="customer_count", ascending=False).head(10),
     palette=colors,
     ax=ax
@@ -253,8 +253,8 @@ with col2:
   ax.set_title("Number of Customer by States", loc="center", fontsize=50)
   ax.set_ylabel(None)
   ax.set_xlabel(None)
-  ax.tick_params(axis='y', labelsize=20)
-  ax.tick_params(axis='x', labelsize=15)
+  ax.tick_params(axis='x', labelsize=30)
+  ax.tick_params(axis='y', labelsize=35)
   
   st.pyplot(fig)
 
@@ -271,10 +271,18 @@ sns.barplot(
   data=payment_type_df.sort_values(by="order_count", ascending=False),
   palette=colors_
 )
-ax.title("Customer Payment Type That's Most Preferred and Used.",
-          loc="center", fontsize=15)
-ax.xlabel(None)
-ax.ylabel(None)
-ax.tick_params(axis="y", labelsize=12)
+ax.set_title("Customer Payment Type That's Most Preferred and Used.",
+          loc="center", fontsize=50)
+ax.set_xlabel(None)
+ax.set_ylabel(None)
+ax.tick_params(axis="x", labelsize=30)
+ax.tick_params(axis="y", labelsize=35)
 
 st.pyplot(fig)
+
+
+# ===== Q5 - Q7: Best Customers Based on RFM Parameters =====
+st.subheader('Best Customers Based on RFM Parameters')
+
+col1, col2, col3 = st.columns(3)
+
