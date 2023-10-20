@@ -286,3 +286,50 @@ st.subheader('Best Customers Based on RFM Parameters')
 
 col1, col2, col3 = st.columns(3)
 
+# Recency Metric
+with col1:
+  avg_recency = round(rfm_df.recency.mean(), 1)
+  st.metric("Average Recency (days)", value=avg_recency)
+
+# Frequency Metric
+with col2:
+  avg_frequency = round(rfm_df.frequency.mean(), 2)
+  st.metric("Average Frequency", value=avg_frequency)
+
+# Monetary Metric
+with col3:
+  avg_monetary = format_currency(rfm_df.monetary.mean(), "USD", locale="es_CO")
+  st.metric("Average Monetary", value=avg_monetary)
+
+fig, ax = plt.subplots(nrows=1, ncols=3, figsize=(30,6))
+
+colors = ["#72BCD4", "#72BCD4", "#72BCD4", "#72BCD4", "#72BCD4"]
+
+for i, column in enumerate(["recency", "frequency", "monetary"]):
+  # the sorted data
+  top_customers = rfm_df.sort_values(by=column, ascending=True if i == 0 else False).head(5)
+  
+  # truncate customer_id to be 8 characters
+  top_customers["customer_id_short"] = top_customers["customer_id"].str[:8] + "..."
+  
+  sns.barplot(
+    y=column,
+    x="customer_id_short",
+    data=top_customers,
+    palette=colors,
+    ax=ax[i]
+  )
+  ax[i].set_ylabel(None)
+  ax[i].set_xlabel(None)  
+  ax[i].tick_params(axis="x", labelsize=15)
+  ax[i].tick_params(axis="y", labelsize=18)
+  ax[i].set_xticklabels(top_customers["customer_id_short"], rotation=45)
+  
+
+ax[0].set_title("By Recency (days)", loc="center", fontsize=18)
+ax[1].set_title("By Frequency", loc="center", fontsize=18)
+ax[2].set_title("By Monetary", loc="center", fontsize=18)
+
+plt.suptitle("Best Customer Brand on RFM Parameters (customer_id)\n", fontsize=20)
+
+st.pyplot(fig)
