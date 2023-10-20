@@ -149,6 +149,7 @@ rfm_df = c_rfm(main_df)
 # ==================== '''
 st.header('Brazilian E-Commerce Dashboard :sparkles:')
 
+
 # ===== daily orders =====
 st.subheader('Daily Orders')
 
@@ -210,3 +211,47 @@ ax[0].set_title("Best Performing Product", loc="center", fontsize=50)
 ax[1].set_title("Worst Performing Product", loc="center", fontsize=50)
 
 st.pyplot(fig)
+
+
+# ===== Customers Demographics =====
+st.subheader("Customer Demographics")
+
+col1, col2 = st.columns(2)
+
+# by City
+with col1:
+  fig, ax = plt.subplots(figsize=(20, 10))
+    
+  colors = ["#90CAF9", "#D3D3D3", "#D3D3D3", "#D3D3D3", "#D3D3D3", "#D3D3D3", "#D3D3D3", "#D3D3D3"]
+  sns.barplot(
+    y="customer_count",
+    x="customer_city",
+    data=bycity_df.sort_values(by="customer_count", ascending=False).head(10),
+    palette=colors,
+    ax=ax
+  )
+  ax.set_title("Number of Customer by City", loc="center", fontsize=50)
+  ax.set_ylabel(None)
+  ax.set_xlabel(None)
+  ax.tick_params(axis='y', labelsize=20)
+  ax.tick_params(axis='x', labelsize=15)
+  st.pyplot(fig)
+
+# by State
+with col2:
+  fig, ax = plt.subplots(figsize=(20, 10))
+    
+  colors = ["#90CAF9", "#D3D3D3", "#D3D3D3", "#D3D3D3", "#D3D3D3", "#D3D3D3", "#D3D3D3", "#D3D3D3"]
+  sns.barplot(
+    y="customer_count",
+    x="customer_state",
+    data=bystate_df.sort_values(by="customer_count", ascending=False).head(10),
+    palette=colors,
+    ax=ax
+  )
+  ax.set_title("Number of Customer by States", loc="center", fontsize=50)
+  ax.set_ylabel(None)
+  ax.set_xlabel(None)
+  ax.tick_params(axis='y', labelsize=20)
+  ax.tick_params(axis='x', labelsize=15)
+  st.pyplot(fig)
