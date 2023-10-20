@@ -54,3 +54,12 @@ def c_bycity(df):
   }, inplace=True)
   
   return bycity
+
+# ===== by State Dataframe =====
+def c_bystate(df):
+  bystate = df.groupby(by="customer_state").customer_id.nunique().reset_index()
+  bystate.reanme(columns={
+      "customer_id": "customer_count"
+  }, inplace=True)
+  
+  return bystate
