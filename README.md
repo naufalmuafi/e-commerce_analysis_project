@@ -35,6 +35,17 @@ ipykernel = "*"
 
 Please ensure that you have the specified dependencies installed in your virtual environment before running the project.
 
+## Dashboard
+
+To access dashboard, you can go to [E-Commerce Analysis Dashboard](https://e-commerce-analysis.streamlit.app/).
+!["dashboard_screenshot"](img/dashboard_screenshot.jpeg)
+
+To run dashboard on localhost, you can start with:
+```bash
+cd ./dashboard
+streamlit run dashboard.py
+```
+
 ## Contact Information
 This project was created by:
 
