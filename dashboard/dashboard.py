@@ -97,7 +97,7 @@ def c_rfm(df):
 # ==================== '''
 
 # Load the Data
-all_df = pd.read_csv("./data.csv")
+all_df = pd.read_csv("data.csv")
 
 # ===== Create a Filter Component =====
 datetime_columns = ["order_purchase_timestamp",
