@@ -289,10 +289,7 @@ col1, col2, col3 = st.columns(3)
 # Recency Metric
 with col1:
   avg_recency = round(rfm_df.recency.mean(), 1)
-  st.metric("Average Recency (days)", value=avg_recency)
-  
-  min_recency = rfm_df.recency.max()
-  st.metric("Recency (days)", value=min_recency)
+  st.metric("Average Recency (days)", value=avg_recency)  
 
 # Frequency Metric
 with col2:
